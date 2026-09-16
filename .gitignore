@@ -6,3 +6,5 @@
 04-django/se2/db.sqlite3
 04-django/se3/config/__pycache__/
 04-django/se3/db.sqlite3
+04-django/se3/weather/__pycache__/
+04-django/se3/weather/migrations/__pycache__/

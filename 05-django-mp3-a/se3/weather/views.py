@@ -3,7 +3,9 @@ from django.shortcuts import render
 
 
 def show_temp_view(request):
-    lat,lon=37.7981, 48.5146
+    city = request.GET.get("city")
+    lat = request.GET["lat"]
+    lon = request.GET["lon"]
     url= f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}"
     url += "&current_weather=true"
     
@@ -13,5 +15,5 @@ def show_temp_view(request):
     except:
         temp=None
 
-    context={'city':'همدان','temp':temp}
+    context={'city':city,'temp':temp}
     return render(request,'show_temp.html',context)

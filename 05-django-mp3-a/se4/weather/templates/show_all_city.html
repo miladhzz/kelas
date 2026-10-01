@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All city</title>
+</head>
+<body>
+  <h1>All city</h1>
+  <hr />
+  {% for city in cities %}
+    <a href="/?id={{ city.id }}">{{ city.title }}</a>
+    <br />
+  {% endfor %}
+  <hr />
+  <a href="/">صفحه اصلی</a>
+</body>
+</html>

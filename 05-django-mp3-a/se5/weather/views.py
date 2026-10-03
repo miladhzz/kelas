@@ -1,6 +1,23 @@
 import requests
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from . import models
+from .forms import CityForm
+
+
+@login_required
+def add_city(request):       
+    if request.method == "GET":
+        form = CityForm()
+        return render(request, 'add_city.html', {'form': form})
+    else: 
+        form = CityForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('show_all_city')
+        else:
+            return redirect('/')
+
 
 def show_all_city(request):
     cities = models.City.objects.all()

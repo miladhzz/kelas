@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اضافه کردن شهر</title>
+</head>
+<body>
+  <h1>اضافه کردن شهر</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="ذخیره شهر جدید" />
+  </form>
+
+
+
+
+
+
+
+
+
+  <hr />
+  <a href="{% url 'show_all_city' %}">لیست شهرها</a>
+  <br />
+  <form method="post" action='{% url 'logout' %}'>
+    {% csrf_token %}
+    <input type="submit" value="خروج از سایت" />
+  </form>
+</body>
+</html>

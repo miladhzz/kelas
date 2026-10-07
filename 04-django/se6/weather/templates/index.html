@@ -6,6 +6,8 @@
   <title>{{ temp }}</title>
 </head>
 <body>
-  <h1>{{ temp }}</h1>  
+  <h1>{{ temp }} {{ city }}</h1>
+  <hr />
+  <a href="{% url 'all_city' %}">لیست شهرها</a>
 </body>
 </html>

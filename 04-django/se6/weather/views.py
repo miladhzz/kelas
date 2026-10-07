@@ -1,13 +1,16 @@
 import random
 from django.shortcuts import render, redirect
 import requests
+from . import models
+
+def all_city(request):
+  cities = models.City.objects.all()
+  return render(request, 'cities.html', {'cities': cities})
 
 def index(request):
-  lat = request.GET.get('lat')
-  lon = request.GET.get('lon')
-  if lon is None or lat is None:
-     return render(request, "error.html")
-  
+  city = models.City.objects.all().first()
+  lat, lon = city.lat, city.lon
+
   link = f'https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}' 
   link += '&current_weather=true'
 
@@ -19,7 +22,8 @@ def index(request):
     temp = "خطا"
 
   context = {
-        'temp': temp
+        'temp': temp,
+        'city': city.title
       }
     
   return render(request, "index.html", context)

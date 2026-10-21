@@ -1,13 +1,22 @@
 import random
-from django.shortcuts import render, redirect, get_list_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 import requests
 from . import models
+from .forms import CityForm
+
+def add_city(request):
+  if request.method == "POST":
+    form = CityForm(data=request.POST)
+    if form.is_valid():
+      form.save()
+      return redirect('all_city')      
+  else:
+    form = CityForm()
+
+  return render(request, 'add_city.html', {'form': form})
 
 def detail_city(request, id):
-  try:
-    city = models.City.objects.get(id=id)
-  except models.City.DoesNotExist:
-    return render(request, "error.html") 
+  city = get_object_or_404(models.City, id=id)
   
   lat, lon = city.lat, city.lon
   

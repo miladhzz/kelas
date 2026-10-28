@@ -1,8 +1,17 @@
 import random
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
 import requests
 from . import models
 from .forms import CityForm
+
+def delete_city(request):
+  id = request.POST.get('id')
+  if id:
+    city = get_object_or_404(models.City, id=id)
+    city.delete()
+  
+  return redirect('all_city')
 
 def add_city(request):
   if request.method == "POST":

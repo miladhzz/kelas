@@ -11,6 +11,24 @@
     <a href="{% url 'detail_city' item.id %}">
       <h2>{{ item.title }} ({{ item.lat }}, {{ item.lon }})</h2>
     </a>
+    {% if user.is_authenticated %}
+      <form method="post" action="{% url 'delete_city' %}">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{ item.id }}" />
+        <input type="submit" value="حذف" />
+      </form>
+    {% endif %}
   {% endfor %}
+  <hr />
+  <a href="{% url 'add_city' %}">اضافه کردن شهر</a>
+  <hr />
+  {% if user.is_authenticated %}
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <input type="submit" value="خروج" />
+      </form>  
+  {% else %}
+      <a href="{% url 'login' %}">ورود به سایت  </a>
+  {% endif %}
 </body>
 </html>

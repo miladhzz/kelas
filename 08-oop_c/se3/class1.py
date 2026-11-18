@@ -1,7 +1,13 @@
 class Mobile:
-  def show(self):
-    self.brand = "Nokia"
+  def __init__(self, brand, model):
+    self.brand = brand
+    self.model = model
 
-nokia1100 = Mobile()
-nokia1100.show()
-print(nokia1100.brand)
+
+brand = input("Enter Brand: ")
+model = input("Enter Model: ")
+
+mobile = Mobile(brand, model)
+# print(nokia.__dict__)
+print(mobile.model)
+print(mobile.brand)

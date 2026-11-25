@@ -3,21 +3,12 @@ class Mobile:
     self.brand = brand
     self.model = model 
 
-  def zang(self):
-    print("zzzzzzz")
-
 class SmartPhone(Mobile):
-
-  def zang(self):
-    print("zzzzzzz ali callling...")
-
-  def aks(self):
-    print("akkkkks")
-
-
+  def __init__(self, brand, model, os):
+    super().__init__(brand, model)
+    self.os = os
+    
 
 smart_mobile = SmartPhone("samsung", "s24", "ANDROID 12")
-print(smart_mobile.brand)
 print(smart_mobile.os)
-smart_mobile.zang()
-smart_mobile.aks()
+print(smart_mobile.brand)
